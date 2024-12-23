@@ -1,0 +1,115 @@
+﻿<Window x:Class="Laba4.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba4"
+        mc:Ignorable="d"
+        Title="GameWindow" Height="676" Width="870">
+    <Grid>
+        <!-- Основной Canvas для игры -->
+        <Canvas x:Name="GameCanvas" Background="Black" Focusable="True" />
+
+        <!-- Панель для отображения информации -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,34,29,0" Width="171" Height="150">
+            <!-- Счет -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Score: " 
+                           FontSize="20" 
+                           Foreground="White" 
+                           />
+                <TextBlock x:Name="ScoreTextBlock" 
+                           FontSize="20" 
+                           Foreground="White" 
+                           VerticalAlignment="Center" 
+                           Text="{Binding Player.Score}" />
+            </StackPanel>
+
+            <!-- Здоровье игрока -->
+            <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                <Image x:Name="playerImage" Width="16" Height="16" Margin="0, 0, 10, 0" />
+                <TextBlock Text="Player HP: " 
+                           FontSize="20" 
+                           Foreground="White" 
+                           VerticalAlignment="Center" />
+                <TextBlock x:Name="PlayerHPTextBlock" 
+                           FontSize="20" 
+                           Foreground="White" 
+                           VerticalAlignment="Center" 
+                           Text="{Binding Player.Health}" />
+            </StackPanel>
+
+            <!-- Здоровье врага -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Image x:Name="enemyImage" Width="16" Height="16" Margin="0, 0, 10, 0" />
+                <TextBlock Text="Enemy HP: " 
+                           FontSize="20" 
+                           Foreground="White" 
+                           />
+                <TextBlock x:Name="EnemyHPTextBlock" 
+                           FontSize="20" 
+                           Foreground="White" 
+                           VerticalAlignment="Center" 
+                           Text="{Binding Enemy.Health}" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="На главное меню"
+            Click="OpenMainWindowClick" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Margin="657,485,0,0" 
+            FontSize="20" 
+            Padding="10,5"
+            Focusable="False" Height="39" Width="183"/>
+        
+        <!-- Кнопка "Сохранить игру" -->
+        <Button Content="Сохранить игру" 
+            Click="SaveGameClick" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Margin="657,559,0,0" 
+            FontSize="20" 
+            Padding="10,5"
+            Focusable="False" Width="183"/>
+
+        <!-- Экран "Game Over" -->
+        <Grid Name="GameOverCanvas" Visibility="Hidden" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Текст "Game Over" -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                <TextBlock Text="Game" 
+                           HorizontalAlignment="Center" 
+                           FontSize="40" 
+                           Foreground="DarkRed" 
+                           Margin="0,0,0,5" />
+                <TextBlock Text="Over" 
+                           HorizontalAlignment="Center" 
+                           FontSize="40" 
+                           Foreground="DarkRed" 
+                           Margin="0,0,0,20" />
+
+                <!-- Кнопка "Начать заново" -->
+                <Button Content="Начать заново" 
+                        Click="RestartClick" 
+                        HorizontalAlignment="Center" 
+                        FontSize="20" 
+                        Padding="10,5" 
+                        Margin="0,10" />
+
+                <Button Content="Вернутья на главное меню"
+                        Click="OpenMainWindowClick" 
+                        HorizontalAlignment="Center" 
+                        FontSize="20" 
+                        Padding="10,5" 
+                        Margin="0,10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
